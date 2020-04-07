@@ -10,6 +10,80 @@ In addition to the implementation of the “getResultingAddress” method, some 
 - Added a simple logger class.
 - Unit test (Google Test) covering “getResultingAddress” use cases.
 
+## Building and executing instructions
+### Requirements
+- CMake 3.10
+- GCC 4.9
+
+#### Download
+Clone the project from repository:
+```console
+$ git clone https://github.com/babilonio/embedded_programming
+```
+NOTE: Google test library is included in project files (lib/googletest)
+
+#### Build
+The first time it takes longer to build as the Google test library also needs to be built.
+```console
+$ cd embedded_programming && mkdir build && cd build
+$ cmake ..
+$ make all
+```
+- To activate Debug mode
+
+```console
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+```
+- To run all unit test:
+```console
+$ make test
+```
+#### Run
+```console
+$ ./src/EmbeddedProgramming_run
+```
+ #### Run unit tests
+```console
+$ ./tst/EmbeddedProgramming_tst
+```
+
+## Example output
+
+#### Basic usage
+```console
+~/embedded_programming/build$ ./src/EmbeddedProgramming_run
+2020-04-07 16:43:02.189323::INFO::Starting...
+2020-04-07 16:43:02.196762::INFO::Resulting address: 0x1000
+2020-04-07 16:43:02.203101::INFO::Exiting...
+Execution log saved in log.txt
+```
+#### Debug mode
+```console
+~/embedded_programming/build$ ./src/EmbeddedProgramming_run
+2020-04-07 17:14:15.695642::INFO::Starting...
+2020-04-07 17:14:15.702080::DEBUG::dataOffsett: 0xff
+2020-04-07 17:14:15.708530::DEBUG::baseAddress: 0xf01
+2020-04-07 17:14:15.714588::INFO::Resulting address: 0x1000
+2020-04-07 17:14:15.719421::INFO::Exiting...
+Execution log saved in log.txt
+```
+#### Test run
+```console
+~/embedded_programming/build$ ./tst/EmbeddedProgramming_tst
+[==========] Running 2 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 2 tests from EmbeddedControllerTest
+[ RUN      ] EmbeddedControllerTest.GetResultingAddress
+[       OK ] EmbeddedControllerTest.GetResultingAddress (0 ms)
+[ RUN      ] EmbeddedControllerTest.MemoryOutOfRangeError
+[       OK ] EmbeddedControllerTest.MemoryOutOfRangeError (0 ms)
+[----------] 2 tests from EmbeddedControllerTest (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test suite ran. (6 ms total)
+[  PASSED  ] 2 tests.
+```
+
 ## Solution
 ### getResultingAddress() implementation
 
@@ -75,78 +149,3 @@ struct MemoryOutOfRangeError : public std::exception {
 #endif // EMBEDDED_CONTROLLER_H
 ```
 File: https://github.com/babilonio/embedded_programming/blob/master/src/embedded_controller.hpp
-
-## Building and executing instructions
-### Requirements
-- CMake 3.10
-- GCC 4.9
-
-#### Download
-Clone the project from repository:
-```console
-$ git clone https://github.com/babilonio/embedded_programming
-```
-NOTE: Google test library is included in project files (lib/googletest)
-
-#### Build
-The first time it takes longer to build as the Google test library also needs to be built.
-```console
-$ cd embedded_programming && mkdir build && cd build
-$ cmake ..
-$ make all
-```
-- To activate Debug mode
-
-```console
-$ cmake -DCMAKE_BUILD_TYPE=Debug ..
-```
-- To run all unit test:
-```console
-$ make test
-```
-#### Run
-```console
-$ ./src/EmbeddedProgramming_run
-```
- #### Run unit tests
-```console
-$ ./tst/EmbeddedProgramming_tst
-```
-
-
-## Example output
-
-#### Basic usage
-```console
-~/embedded_programming/build$ ./src/EmbeddedProgramming_run
-2020-04-07 16:43:02.189323::INFO::Starting...
-2020-04-07 16:43:02.196762::INFO::Resulting address: 0x1000
-2020-04-07 16:43:02.203101::INFO::Exiting...
-Execution log saved in log.txt
-```
-#### Debug mode
-```console
-~/embedded_programming/build$ ./src/EmbeddedProgramming_run
-2020-04-07 17:14:15.695642::INFO::Starting...
-2020-04-07 17:14:15.702080::DEBUG::dataOffsett: 0xff
-2020-04-07 17:14:15.708530::DEBUG::baseAddress: 0xf01
-2020-04-07 17:14:15.714588::INFO::Resulting address: 0x1000
-2020-04-07 17:14:15.719421::INFO::Exiting...
-Execution log saved in log.txt
-```
-#### Test run
-```console
-~/embedded_programming/build$ ./tst/EmbeddedProgramming_tst
-[==========] Running 2 tests from 1 test suite.
-[----------] Global test environment set-up.
-[----------] 2 tests from EmbeddedControllerTest
-[ RUN      ] EmbeddedControllerTest.GetResultingAddress
-[       OK ] EmbeddedControllerTest.GetResultingAddress (0 ms)
-[ RUN      ] EmbeddedControllerTest.MemoryOutOfRangeError
-[       OK ] EmbeddedControllerTest.MemoryOutOfRangeError (0 ms)
-[----------] 2 tests from EmbeddedControllerTest (2 ms total)
-
-[----------] Global test environment tear-down
-[==========] 2 tests from 1 test suite ran. (6 ms total)
-[  PASSED  ] 2 tests.
-```
