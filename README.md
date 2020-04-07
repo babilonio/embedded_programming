@@ -66,9 +66,9 @@ uint32_t getResultingAddress(uint32_t offset, const DataContainment& data_contai
 // Define exception for out of range memory accesses
 struct MemoryOutOfRangeError : public std::exception {
 	
-	const char * what () const noexcept {
-      return "MemoryOutOfRangeError Exception";
-   }
+    const char * what () const noexcept {
+        return "MemoryOutOfRangeError Exception";
+    }
 };
 
 
