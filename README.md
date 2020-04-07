@@ -100,7 +100,7 @@ $ make all
 ```console
 $ cmake -DCMAKE_BUILD_TYPE=Debug ..
 ```
-- To run unit test on make command:
+- To run all unit test:
 ```console
 $ make test
 ```
