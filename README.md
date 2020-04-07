@@ -84,8 +84,7 @@ Execution log saved in log.txt
 [  PASSED  ] 2 tests.
 ```
 
-## Solution
-### getResultingAddress() implementation
+## getResultingAddress() implementation
 
 ```c++
 #include "embedded_controller.hpp"
